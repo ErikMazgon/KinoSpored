@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/KinoSpored/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.124" />
+        <entry key="..\:/KinoSpored/app/src/main/res/drawable/ic_ikona_kino.xml" value="0.1625" />
         <entry key="..\:/KinoSpored/app/src/main/res/drawable/ic_launcher_background.xml" value="0.124" />
         <entry key="..\:/KinoSpored/app/src/main/res/drawable/ikonaKino_background.xml" value="0.124" />
         <entry key="..\:/KinoSpored/app/src/main/res/drawable/ikona_kino2_background.xml" value="0.1" />
@@ -12,6 +13,8 @@
         <entry key="..\:/KinoSpored/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/KinoSpored/app/src/main/res/layout/activity_maps.xml" value="0.25416666666666665" />
         <entry key="..\:/KinoSpored/app/src/main/res/mipmap-anydpi-v26/ikonaKino.xml" value="0.1" />
+        <entry key="..\:/KinoSpored/app/src/main/res/mipmap-anydpi-v26/ikona_kino.xml" value="0.2545" />
+        <entry key="..\:/KinoSpored/app/src/main/res/mipmap-anydpi-v26/ikona_kino8.xml" value="0.1625" />
       </map>
     </option>
   </component>

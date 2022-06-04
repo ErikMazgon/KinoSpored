@@ -1,16 +1,13 @@
 package si.uni_lj.fe.tnuv.kinospored;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -18,10 +15,16 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
@@ -32,9 +35,9 @@ import java.util.List;
 
 public class Maps extends AppCompatActivity implements OnMapReadyCallback {
 
+    // TODO shranjevat vsa besedila in podatke v te reference, kar smo delal na vajah?
     private GoogleMap mMap;
 
-    // DELUJE DELNO
     ArrayList<LatLng> arrayListLokacije = new ArrayList<LatLng>();
     LatLng kinodvor = new LatLng(46.056746292443144, 14.509623019204405);
     LatLng komuna = new LatLng(46.05247459777552, 14.502844717489147);
@@ -122,7 +125,7 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
         // IZRIŠE VSE MARKERJE IN JIM DA IMENA
         for(int i = 0; i < arrayListLokacije.size(); i++) {
             mMap.addMarker(new MarkerOptions()
-                    //.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ikona_kino8)) //TUKEJ NEKI NE DELA
+                    .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_ikona_kino)) //TUKEJ NEKI NE DELA
                     .position(arrayListLokacije.get(i))
                     .title(arrayListImena.get(i)))
                     .showInfoWindow();
@@ -142,6 +145,15 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
         getData(mMap);
         // animateCamera();
 
+    }
+
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
     private boolean isLocationPermissionGranted() {
